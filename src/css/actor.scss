@@ -145,7 +145,7 @@
             .track {
                 display: flex;
                 flex-flow: row;
-                justify-content: space-evenly;
+                justify-content: center;
                 margin-bottom: 0.1em;
                 width: 100%;
                 &.center {
@@ -162,7 +162,7 @@
                 }
                 .track-slash {
                     width: 1.5em;
-                    transform: translateY(10%);
+                    transform: translateY(15%);
                     flex: 0 0;
                     &:after {
                         content: '/';
@@ -170,6 +170,7 @@
                 }
                 .track-plus {
                     width: 1em;
+                    transform: translateY(15%);
                     flex: 0 0;
                     &:after {
                         content: '+';

@@ -1457,7 +1457,7 @@ export class SR5BaseActorSheet extends foundry.appv1.sheets.ActorSheet {
 
     async _onRollSkill(event) {
         event.preventDefault();
-        const itemId = Helpers.listItemId(event);
+        const itemId = event.currentTarget.dataset.itemId ? event.currentTarget.dataset.itemId : Helpers.listItemId(event);
         // NOTE: Knowledge skills still use a combined id in order for the legacy skill editing dialog to work.
         const skillId = itemId.includes('.') ? itemId.split('.')[0] : itemId;
         if (!skillId) { console.error(`Shadowrun 5e | Rolling skill with item id (${itemId}). But (${skillId}) doesn't seem to be an id`); return; }

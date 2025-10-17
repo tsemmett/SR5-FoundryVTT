@@ -28,6 +28,17 @@
                     </span>
                 </div>
                 <div class="item-right">
+                    {{#if isCharacter}}
+                        <div class="item-text item-name">
+                            {{localize "SR5.Nuyen"}}
+                        </div>
+                        <div class="item-text input">
+                            <input class="display" type="text" name="system.nuyen" value="{{system.nuyen}}" data-dtype="Number" />
+                            <span class="unit">
+                                <i class="fas fa-yen-sign"></i>
+                            </span>
+                        </div>
+                    {{/if}}
                     <div class="item-text item-icons">
                         <a class="inventory-inline-create" data-tooltip="SR5.Labels.ActorSheet.CreateInventory">
                             <i class="item-icon fas fa-plus"></i>

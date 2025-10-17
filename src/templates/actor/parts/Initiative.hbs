@@ -1,4 +1,7 @@
 {{#> "systems/shadowrun5e/dist/templates/common/Attribute.hbs"}}
+    <div class="attribute-name">
+        {{localize "SR5.Initiative"}}
+    </div>
     <div class="track">
         <div class="attribute-name">
             <select name="initiative-select" class="display">
@@ -18,22 +21,6 @@
                 {{/select}}
             </select>
         </div>
-        <div class="attribute-name">
-            <label
-                    data-tooltip="SR5.UseEdgeForInitiativeRoll"
-                    class="checkbox init-edge-label"
-            >
-                <input
-                        type="checkbox"
-                        class="submit-checkbox hidden"
-                        name="system.initiative.edge"
-                    {{checked system.initiative.edge}}
-                />
-                <span class="checkmark far"></span>
-            </label>
-        </div>
-    </div>
-    <div class="track">
         <div class="attribute-input-container">
             <input
                     class="display"
@@ -52,6 +39,20 @@
                     value="{{system.initiative.current.dice.text}}"
                     disabled
             />
+        </div>
+        <div class="attribute-name">
+            <label
+                    data-tooltip="SR5.UseEdgeForInitiativeRoll"
+                    class="checkbox init-edge-label"
+            >
+                <input
+                        type="checkbox"
+                        class="submit-checkbox hidden"
+                        name="system.initiative.edge"
+                    {{checked system.initiative.edge}}
+                />
+                <span class="checkmark far"></span>
+            </label>
         </div>
     </div>
 {{/"systems/shadowrun5e/dist/templates/common/Attribute.hbs"}}
