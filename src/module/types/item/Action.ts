@@ -106,6 +106,7 @@ export const ActionRollData = (
     extended: new BooleanField({ initial: false }),
     modifiers: new ArrayField(new StringField({ required: true })),
     damage: new ModifiableField(DamageData()),
+    initCost: new NumberField({ required: true, nullable: false, integer: true, initial: 0 }),
     opposed: new SchemaField({
         test: new StringField({ required: true, initial: opposedTest }),
         type: new StringField({ required: true }),

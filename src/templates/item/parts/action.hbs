@@ -7,7 +7,7 @@
             {{localize "SR5.Labels.Action.ActiveTest"}}
         </div>
         <div class="inputs">
-            <select name="system.action.test" disabled>
+            <select name="system.action.test">
                 {{#select system.action.test}}
                 <option value=""></option>
                 {{#each activeTests}}
@@ -51,6 +51,23 @@
             </select>
         </div>
     </div>
+    {{#ife system.action.type "interrupt"}}
+    <div class="form-line">
+        <div class="label">
+            {{localize "SR5.InitiativeCost"}}
+        </div>
+        <div class="inputs">
+            <input
+                size="4"
+                maxlength="3"
+                type="number"
+                name="system.action.initCost"
+                value="{{system.action.initCost}}"
+                data-dtype="Number"
+            />
+        </div>
+    </div>
+    {{/ife}}
     {{#if system.action.type}}
     <div class="form-line">
         <div class="label">

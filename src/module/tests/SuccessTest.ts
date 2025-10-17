@@ -110,6 +110,8 @@ export interface TestData {
 
     // Has this test been cast before
     evaluated: boolean
+
+    iniMod: number|undefined
 }
 
 export interface SuccessTestData extends TestData {
@@ -205,6 +207,10 @@ export class SuccessTest<T extends SuccessTestData = SuccessTestData> {
         this.effects = new SuccessTestEffectsFlow<this>(this);
 
         this.calculateBaseValues();
+        this.applyInterruptInitMod();
+        console.log(data);
+        console.log(this.actor);
+        console.log(this.item);
         
         this.dialog = null;
 
@@ -1304,6 +1310,15 @@ export class SuccessTest<T extends SuccessTestData = SuccessTestData> {
         const roll = new SR5Roll(formula);
         this.rolls.push(roll);
     }
+    
+    applyInterruptInitMod() {
+        if (!this.actor) return;
+        if (!this.item) return;
+
+        const action = this.item?.getAction();
+
+        this.data.iniMod = action?.initCost;
+    }
 
     /**
      * Handle Edge rules for 'second chance'.
@@ -1570,6 +1585,9 @@ export class SuccessTest<T extends SuccessTestData = SuccessTestData> {
      */
     async afterTestComplete() {
         console.debug(`Shadowrun5e | Test ${this.constructor.name} completed.`, this);
+        
+        if(this.data.iniMod)
+            await this.actor?.changeCombatInitiative(this.data?.iniMod);
 
         if (this.success) {
             await this.afterSuccess();
@@ -1883,6 +1901,16 @@ export class SuccessTest<T extends SuccessTestData = SuccessTestData> {
     _prepareResultActionsTemplateData(): ResultActionType[] {
         const actions: ResultActionType[] = [];
         const actionResultData = this.results;
+
+        if(this.data.iniMod){
+            console.log("Pushing Action");
+            actions.push({
+                action: 'modifyCombatantInit',
+                label: 'SR5.Initiative',
+                value: String(this.data.iniMod)
+            });
+        }
+
         if (!actionResultData) return actions;
 
         return actions;

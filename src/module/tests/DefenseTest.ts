@@ -18,7 +18,7 @@ export interface DefenseTestData extends OpposedTestData {
 
     // Should this defense test cause an initiative modifier to be applied, use this value
     // It's also used for display in chat.
-    iniMod: number|undefined
+    //iniMod: number|undefined
 }
 
 

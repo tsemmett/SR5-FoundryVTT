@@ -25,6 +25,7 @@ export class ActionResultFlow {
      */
     static get _handlersResultAction(): Map<ResultActions, ((context: ActionResultOptions) => Promise<void>)> {
         const handlers = new Map();
+        console.log('Result Action Handler')
         handlers.set('modifyCombatantInit', ActionResultFlow._castInitModifierAction.bind(this));
         handlers.set('forceReboot', ActionResultFlow._onForceReboot.bind(this));
 
@@ -40,6 +41,7 @@ export class ActionResultFlow {
      * @param context In what context has the result action been triggered
      */
     static async executeResult(resultAction: ResultActions, context: ActionResultOptions) {
+        console.log('Action Execute Result');
         const handler = ActionResultFlow._handlersResultAction.get(resultAction);
 
         if (!handler)
@@ -54,12 +56,13 @@ export class ActionResultFlow {
     static async _castInitModifierAction(context: ActionResultOptions) {
         const test = await TestCreator.fromMessage(context.messageId);
         if (!test) return;
-
+        console.log('Init Modifier Action')
         await test.populateDocuments();
         // NOTE: Use test data typing here, as including PhysicalDefenseTest would cause circular dependencies, breaking SuccessTest/OpposedTest import order.
-        const data = test.data as PhysicalDefenseTestData;
-        if (!data.iniMod) return;
-        await test.actor?.changeCombatInitiative(data.iniMod);
+        //const data = test.data as PhysicalDefenseTestData;
+        if (!test.data.iniMod) return;
+        console.log("Normal Init Modifier Logic");
+        //await test.actor?.changeCombatInitiative(test.data.iniMod);
     }
 
     /**

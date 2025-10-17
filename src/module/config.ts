@@ -613,6 +613,7 @@ export const SR5 = {
         simple: 'SR5.ActionTypeSimple',
         complex: 'SR5.ActionTypeComplex',
         varies: 'SR5.ActionTypeVaries',
+        interrupt: 'SR5.ActionTypeInterrupt'
     },
 
     // Use within action damage calculation (base <operator> attribute) => value
