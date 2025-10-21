@@ -551,20 +551,11 @@ ___________________
      * @returns 
      */
     static renderCompendiumDirectory(app: foundry.appv1.api.Application, html: HTMLElement) {
+        console.log(app);
+        console.log(html);
         const browser = $('<button class="sr5 import-button"><i class="fa-solid fa-book-open-reader"></i><span>Open Compendium Browser</span></button>');
-        $(html).find('.header-actions').append(browser);
+        $(html).find('.directory-footer').append(browser);
         browser.on('click', () => { void new CompendiumBrowser().render({ force: true }); });
-
-        if (!game.user?.isGM) {
-            return;
-        }
-
-        const button = $('<button class="sr5 flex0">Import Chummer Data</button>');
-        $(html).find('.directory-footer').append(button);
-
-        button.on('click', (event) => {
-            new Import().render(true);
-        });
     }
 
     /**

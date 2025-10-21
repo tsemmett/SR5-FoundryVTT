@@ -308,7 +308,7 @@ export class SR5BaseActorSheet extends foundry.appv1.sheets.ActorSheet {
         html.find('.inventory-item-move').on('click', this._onItemMoveToInventory.bind(this));
 
         // Condition monitor track handling...
-        html.find('.horizontal-cell-input .cell').on('click', this._onSetConditionTrackCell.bind(this));
+        html.find('.horizontal-cell-input ').on('click', this._onSetConditionTrackCell.bind(this));
         html.find('.horizontal-cell-input .cell').on('contextmenu', this._onClearConditionTrack.bind(this));
 
         // Matrix data handling...
